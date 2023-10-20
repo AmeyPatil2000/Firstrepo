@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+      
+        function sayHello() {
+            console.log("Hello, Alice (Function Declertion)");
+        }
+
+        sayHello();
+
+      
+        const sayFun = function () {
+            console.log("Hello, Bob (Function expression)");
+        };
+
+        sayFun();
+
+      
+        const sayArrow = () => {
+            console.log("Hello, Charlie (Arrow Function)");
+        };
+
+        sayArrow();
+
+      
+        (function () {
+            console.log("Hello, Eve (IIFE)");
+        })();
+
+      
+        const sayConstruct = new Function('console.log("Hello, Dave(Function Constructor)");');
+
+        sayConstruct();
+      
+        function* generateHello() {
+            yield "Namaste, world (Generator Function)";
+        }
+
+        const helloGenerator = generateHello();
+        console.log(helloGenerator.next().value);
+
+      
+        function createHelloFunction() {
+            return function () {
+                console.log("Hey, Frank(Returned Function) ");
+            };
+        }
+
+        const sayReturn = createHelloFunction();
+        sayReturn();
+       
+        const helloObject = {
+            sayObj: function () {
+                console.log("Hello, Grace (object Method)");
+            }
+        };
+
+        helloObject.sayObj();
+
+    </script>
+</body>
+
+</html>

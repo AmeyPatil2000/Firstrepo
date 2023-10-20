@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Swap 1 to 9 Numbers - Drag and Drop</title>
+    <style>
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            width: 200px;
+            margin: 50px auto;
+        }
+
+        .number {
+            width: 50px;
+            height: 50px;
+            background-color: #1ab869;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #ccc;
+            font-size: 24px;
+            user-select: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="number" draggable="true" ondragstart="drag(event)" id="1">1</div>
+        <div class="number" draggable="true" ondragstart="drag(event)" id="2">2</div>
+        <div class="number" draggable="true" ondragstart="drag(event)" id="3">3</div>
+        <div class="number" draggable="true" ondragstart="drag(event)" id="4">4</div>
+        <div class="number" draggable="true" ondragstart="drag(event)" id="5">5</div>
+        <div class="number" draggable="true" ondragstart="drag(event)" id="6">6</div>
+        <div class="number" draggable="true" ondragstart="drag(event)" id="7">7</div>
+        <div class="number" draggable="true" ondragstart="drag(event)" id="8">8</div>
+        <div class="number" draggable="true" ondragstart="drag(event)" id="9">9</div>
+    </div>
+
+    <script>
+        let draggedNumber = null;
+
+        function allowDrop(event) {
+            event.preventDefault();
+        }
+
+        function drag(event) {
+            draggedNumber = event.target;
+        }
+
+        function drop(event) {
+            event.preventDefault();
+            if (draggedNumber) {
+                const sourceId = draggedNumber.id;
+                const targetId = event.target.id;
+
+                if (sourceId !== targetId) {
+                    
+                    const sourceText = draggedNumber.textContent;
+                    draggedNumber.textContent = event.target.textContent;
+                    event.target.textContent = sourceText;
+                }
+            }
+            draggedNumber = null;
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const numbers = document.querySelectorAll('.number');
+
+            numbers.forEach(number => {
+                number.addEventListener('drop', drop);
+                number.addEventListener('dragover', allowDrop);
+            });
+        });
+
+    </script>
+</body>
+
+</html>
+

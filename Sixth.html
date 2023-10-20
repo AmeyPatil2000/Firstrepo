@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>ES6 Concepts with Bootstrap</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+
+
+    <script>
+       
+        let x = 10;
+        const y = 20;
+        x = 30;
+        
+        const add = (a, b) => a + b;
+        console.log(add(5, 7)); 
+          
+        const name = "Alice";
+        const message = `Hello, ${name}!`;
+        console.log(message);
+
+        const person = { firstName: "John", lastName: "Doe" };
+        const { firstName, lastName } = person;
+        console.log(firstName, lastName); 
+
+        
+        const numbers = [1, 2, 3];
+        const newNumbers = [...numbers, 4, 5];
+        console.log(newNumbers); 
+
+        function sum(...args) {
+            return args.reduce((total, current) => total + current, 0);
+        }
+        console.log(sum(1, 2, 3, 4, 5)); 
+
+        class Person {
+            constructor(name) {
+                this.name = name;
+            }
+
+            greet() {
+                return `Hello, ${this.name}!`;
+            }
+        }
+
+        const person1 = new Person("Alice");
+        console.log(person1.greet()); 
+
+        function greet(name = "Guest") {
+            return `Hello, ${name}!`;
+        }
+        console.log(greet()); 
+
+        const myMap = new Map();
+        myMap.set("name", "Alice");
+        console.log(myMap.get("name")); 
+
+        const mySet = new Set([1, 2, 2, 3, 3, 3]);
+        console.log(mySet); 
+
+        const fetchData = () => {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    resolve("Data fetched!");
+                }, 1000);
+            });
+        };
+
+        fetchData()
+            .then(data => console.log(data))
+            .catch(error => console.error(error));
+
+
+    </script>
+    </div>
+    </div>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const num1 = 40;
+        const num2 = 15;
+
+        if (num1 > num2) {
+            console.log("Num1 is greater");
+        } else {
+            console.log("Num2 is greater");
+        }
+
+        for (let i = 1; i <= 5; i++) {
+            console.log("for loop Iteration " + i);
+        }
+
+        let j = 1;
+        while (j <= 5) {
+            console.log("While loop Iteration " + j);
+            j++;
+        }
+
+        let k = 3;
+        do {
+            console.log("Do-while loop Iteration " + k);
+            k++;
+        } while (k <= 5);
+
+        const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
+        const currentDate = new Date();
+
+        const dayOfWeek = currentDate.getDay();
+
+        console.log("Its " + days[dayOfWeek]);
+
+        let joinedNumbers = '';
+
+        for (let i = 1; i <= 5; i++) {
+            joinedNumbers += i;
+
+            if (i < 5) {
+                joinedNumbers += ', ';
+            }
+        }
+
+        console.log("Joined String:" + joinedNumbers);
+
+        let myArray = [1, 2, 3, 4, 5];
+
+        myArray.push(6, 7);
+
+        console.log("After Push:", + myArray);
+
+        const poppedElement = myArray.pop();
+
+        console.log("After Pop:", myArray);
+
+        const shiftedElement = myArray.shift();
+
+        console.log("After Shift:", myArray);
+
+        myArray.unshift(0, 0);
+
+        console.log("After Unshift:", myArray);
+
+        const slicedArray = myArray.slice(1, 4);
+
+        console.log("Sliced Array:", slicedArray);
+
+        const removedElements = myArray.splice(2, 2);
+        console.log("After splice:", removedElements);
+
+        const elementToCheck = 30;
+
+        const exists = myArray.includes(elementToCheck);
+
+        console.log(`${elementToCheck} Element exists:`, exists);
+
+        const reversedArray = myArray.slice().reverse();
+
+        const sortedArray = myArray.slice().sort((a, b) => a - b);
+
+        console.log("After reverse:", reversedArray);
+        console.log("After sort:", sortedArray);
+
+        const myString = "javascript is awesome!";
+
+        const uppercaseString = myString.toUpperCase();
+
+        const lowercaseString = myString.toLowerCase();
+
+        console.log("Uppercase:", uppercaseString);
+        console.log("Lowercase:", lowercaseString);
+
+        const stringLength = myString.length;
+
+
+        console.log("Length of the string:", stringLength);
+
+        const charToFind = "v";
+
+
+        const indexOfChar = myString.indexOf(charToFind);
+
+        if (indexOfChar !== -1) {
+            console.log(`The index of "${charToFind}" is:  ${indexOfChar}.`);
+        } else {
+            console.log(`The character "${charToFind}" is not found.`);
+        }
+
+        const substringToFind = "test";
+
+        const indexOfSubstring = myString.indexOf(substringToFind);
+
+        if (indexOfSubstring !== -1) {
+            console.log(`The index "${substringToFind}" is found at index ${indexOfSubstring}.`);
+        } else {
+            console.log(`The substring "${substringToFind}" is not found in the string.`);
+        }
+
+        const startIndex = 2;
+
+        const substringLength = 4;
+
+        const extractedSubstring = myString.substring(startIndex, startIndex + substringLength);
+
+        console.log("Substring:", extractedSubstring);
+
+        let myString1 = "javascript is awesome!";
+
+        const substringToReplace = "java";
+
+        const replacementSubstring = "Type";
+
+        myString2 = myString1.replace(substringToReplace, replacementSubstring);
+
+        console.log("Replaced String:", myString2);
+
+        const myString3 = "java,script, is awesome!";
+
+        const myString4 = myString3.split(',');
+
+        console.log("Split Array:", myString4);
+    </script>
+</body>
+
+</html>

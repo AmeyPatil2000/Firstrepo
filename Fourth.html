@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Pomodoro Timer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: hsl(77, 32%, 64%);
+        }
+
+        h1 {
+            margin-top: 0;
+            font-size: 50px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 30px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 70px;
+            height: 25px;
+            text-align: center;
+            font-size: 16px;
+            border: 1px solid #221f6a;
+            border-radius: 5px;
+            padding: 5px;
+        }
+
+        .buttons {
+            margin-top: 20px;
+        }
+
+        button {
+            font-size: 16px;
+            padding: 18px 32px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            margin: 0 10px;
+        }
+
+        #timer {
+            margin-top: 20px;
+            font-size: 34px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>Pomodoro Timer</h1>
+
+        <div>
+            <label for="session-length">Session Length (minutes):</label>
+            <input type="number" id="session-length" value="25">
+        </div>
+
+        <div>
+            <label for="break-length">Break Length (minutes):</label>
+            <input type="number" id="break-length" value="10">
+        </div>
+
+        <div class="buttons">
+            <button id="start">Start</button>
+            <button id="reset">Reset</button>
+        </div>
+
+        <div id="timer">
+            <p id="timer-label">Session</p>
+            <p id="time-left">25:00</p>
+        </div>
+    </div>
+
+    <script>
+
+        let timerInterval;
+        let sessionLength = 25;
+        let breakLength = 5;
+        let isSession = true;
+        let timeLeft = sessionLength * 60;
+
+        function updateTimeLeft() {
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            document.getElementById("time-left").textContent = `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
+        }
+
+        function startTimer() {
+            timerInterval = setInterval(() => {
+                timeLeft--;
+
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    playAlarm();
+                    toggleSession();
+                    resetTimer();
+                }
+
+                updateTimeLeft();
+            }, 1000);
+        }
+
+        function playAlarm() {
+            const audio = new Audio("alarm.mp3");
+            audio.play();
+        }
+
+        function toggleSession() {
+            isSession = !isSession;
+            document.getElementById("timer-label").textContent = isSession ? "Session" : "Break";
+            timeLeft = isSession ? sessionLength * 60 : breakLength * 60;
+        }
+
+        function resetTimer() {
+            clearInterval(timerInterval);
+            document.getElementById("start").textContent = "Start";
+            updateTimeLeft();
+        }
+
+        document.getElementById("session-length").addEventListener("change", function () {
+            sessionLength = parseInt(this.value);
+            if (isSession) {
+                timeLeft = sessionLength * 60;
+                updateTimeLeft();
+            }
+        });
+
+        document.getElementById("break-length").addEventListener("change", function () {
+            breakLength = parseInt(this.value);
+            if (!isSession) {
+                timeLeft = breakLength * 60;
+                updateTimeLeft();
+            }
+        });
+
+        document.getElementById("start").addEventListener("click", function () {
+            if (timerInterval) {
+                clearInterval(timerInterval);
+                this.textContent = "Resume";
+            } else {
+                startTimer();
+                this.textContent = "Pause";
+            }
+        });
+
+        document.getElementById("reset").addEventListener("click", function () {
+            resetTimer();
+            sessionLength = 25;
+            breakLength = 5;
+            updateTimeLeft();
+            document.getElementById("session-length").value = sessionLength;
+            document.getElementById("break-length").value = breakLength;
+        });
+        updateTimeLeft();
+    </script>
+</body>
+
+</html>
